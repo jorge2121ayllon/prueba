@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{ data ? 'Editar Estudiante' : 'Agregar Estudiante' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cédula</mat-label>
+      <input matInput formControlName="cedula">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Gmail</mat-label>
+      <input matInput formControlName="gmail">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+  </mat-dialog-actions>
+</form>

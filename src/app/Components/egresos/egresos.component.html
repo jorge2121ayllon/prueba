@@ -1,0 +1,55 @@
+<mat-card>
+  <h2>Lista de Egresos</h2>
+
+  <table mat-table [dataSource]="egresos" class="mat-elevation-z8" *ngIf="egresos.length > 0; else sinDatos">
+
+    <!-- Nombre -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.nombre }} </td>
+    </ng-container>
+
+    <!-- Costo -->
+    <ng-container matColumnDef="costo">
+      <th mat-header-cell *matHeaderCellDef> Costo </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.costo | currency:'USD' }} </td>
+    </ng-container>
+
+    <!-- Fecha -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.fecha }} </td>
+    </ng-container>
+
+    <!-- Descripción -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.descripcion || '-' }} </td>
+    </ng-container>
+
+    <!-- Usuario -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.idUsuario }} </td>
+    </ng-container>
+
+    <!-- Erased -->
+    <ng-container matColumnDef="erased">
+      <th mat-header-cell *matHeaderCellDef> Eliminado </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.erased ? 'Sí' : 'No' }} </td>
+    </ng-container>
+
+    <!-- Registrado -->
+    <ng-container matColumnDef="registrado">
+      <th mat-header-cell *matHeaderCellDef> Registrado </th>
+      <td mat-cell *matCellDef="let egreso"> {{ egreso.date | date:'short' }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <ng-template #sinDatos>
+    <p>No hay egresos registrados.</p>
+  </ng-template>
+</mat-card>
